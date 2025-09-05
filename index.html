@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore MD V1 - Fork Required</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0d1117;
+            color: #f0f6fc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #58a6ff;
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b949e;
+            margin-bottom: 30px;
+        }
+        
+        .fork-section {
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fork-btn {
+            display: inline-block;
+            background-color: #238636;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border: 1px solid #2ea043;
+        }
+        
+        .fork-btn:hover {
+            background-color: #2ea043;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 160, 67, 0.4);
+        }
+        
+        .verification-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        input {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            color: #f0f6fc;
+            padding: 12px;
+            border-radius: 6px;
+            width: 300px;
+            max-width: 100%;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #1f6feb;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #388bfd;
+            transform: translateY(-2px);
+        }
+        
+        .error {
+            color: #f85149;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .success {
+            color: #3fb950;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .available {
+            background-color: #238636;
+            color: white;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: #8b949e;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .card-btn {
+            display: inline-block;
+            background-color: #1f6feb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .card-btn:hover {
+            background-color: #388bfd;
+            transform: translateY(-2px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .download-btn {
+            background-color: #8957e5;
+        }
+        
+        .download-btn:hover {
+            background-color: #986ee2;
+        }
+        
+        .whitehat-img {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://files.catbox.moe/wwp80z.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: #8b949e;
+            border-top: 1px solid #21262d;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Explore MD V1 WhatsApp Bot</h1>
+            <p class="subtitle">An advanced WhatsApp bot with multiple features and integrations</p>
+        </header>
+        
+        <section class="fork-section" id="fork-section">
+            <h2>Fork Required</h2>
+            <p>To use this bot, you need to fork the repository first</p>
+            <a href="https://github.com/nomfundokagwe/Explore-MD-V1/fork" class="fork-btn" target="_blank">Fork Repository</a>
+            
+            <div class="verification-form">
+                <p>After forking, please enter your GitHub username to verify:</p>
+                <div class="form-group">
+                    <input type="text" id="github-username" placeholder="Your GitHub username">
+                </div>
+                <button id="verify-btn">Verify Fork</button>
+                <p class="error" id="error-msg">Verification failed. Please make sure you've forked the repository and entered the correct username.</p>
+                <p class="success" id="success-msg">Verification successful! You now have access to the bot resources.</p>
+            </div>
+        </section>
+        
+        <section class="hidden" id="main-content">
+            <div class="cards-container">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://files.catbox.moe/wwp80z.jpg');">
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Deployment Guide</h3>
+                        <p>Learn how to deploy this WhatsApp bot to your own server with our step-by-step YouTube tutorial.</p>
+                        <a href="https://youtu.be/Rywipp4-wX4?si=Zs9CUABGLpG3CmiA" class="card-btn" target="_blank">Watch Tutorial</a>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-img whitehat-img">
+                        GET CREDS.JSON
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Pair Your Device</h3>
+                        <p>Connect your WhatsApp account with the bot to start using all the amazing features.</p>
+                        <a href="https://explore-md-bot-paircode.onrender.com" class="card-btn">Pair Now</a>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://files.catbox.moe/nc9y0j.jpg');">
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Discord Integration</h3>
+                        <p>Connect your Discord server with the WhatsApp bot for cross-platform functionality.</p>
+                        <a href="https://discord.com" class="card-btn" target="_blank">Create Link</a>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://files.catbox.moe/otzhcx.jpg');">
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Authorization</h3>
+                        <p>Authorize the bot to access your Discord account for enhanced functionality.</p>
+                        <a href="https://katabum.com/authorize" class="card-btn">Authorize</a>
+                    </div>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1088&q=80');">
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>GitHub Repository</h3>
+                        <p>Download the complete source code from our GitHub repository to get started.</p>
+                        <a href="./assets/explore.zip" class="card-btn download-btn" id="download-btn">Download ZIP</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Explore MD V1 WhatsApp Bot &copy; 2023. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffff00" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffff00",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // DOM elements
+        const forkSection = document.getElementById('fork-section');
+        const mainContent = document.getElementById('main-content');
+        const githubUsername = document.getElementById('github-username');
+        const verifyBtn = document.getElementById('verify-btn');
+        const errorMsg = document.getElementById('error-msg');
+        const successMsg = document.getElementById('success-msg');
+        const downloadBtn = document.getElementById('download-btn');
+        
+        // Simulate verification (in a real scenario, this would call a backend API)
+        verifyBtn.addEventListener('click', () => {
+            const username = githubUsername.value.trim();
+            
+            if (!username) {
+                showError('Please enter your GitHub username');
+                return;
+            }
+            
+            // This is a simulation - in reality, you would need to call the GitHub API
+            // to verify if the user has forked the repository
+            simulateVerification(username);
+        });
+        
+        function simulateVerification(username) {
+            // Show loading state
+            verifyBtn.textContent = 'Verifying...';
+            verifyBtn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // For demo purposes, we'll assume verification is successful
+                // In a real application, you would check against the GitHub API
+                const isVerified = Math.random() > 0.3; // 70% success rate for demo
+                
+                if (isVerified) {
+                    showSuccess();
+                    forkSection.classList.add('hidden');
+                    mainContent.classList.remove('hidden');
+                } else {
+                    showError('Verification failed. Please make sure you\'ve forked the repository and entered the correct username.');
+                }
+                
+                verifyBtn.textContent = 'Verify Fork';
+                verifyBtn.disabled = false;
+            }, 1500);
+        }
+        
+        function showError(message) {
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+            successMsg.style.display = 'none';
+        }
+        
+        function showSuccess() {
+            successMsg.style.display = 'block';
+            errorMsg.style.display = 'none';
+        }
+        
+        // Handle download button click
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('In a real implementation, this would download the repository ZIP file');
+            // window.location.href = 'https://github.com/nomfundokagwe/Explore-MD-V1/archive/refs/heads/main.zip';
+        });
+    </script>
+</body>
+  </html>
