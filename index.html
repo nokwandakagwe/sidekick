@@ -432,13 +432,10 @@
             successMsg.style.display = 'block';
             errorMsg.style.display = 'none';
         }
-        
         // Handle download button click
-        downloadBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('In a real implementation, this would download the repository ZIP file');
-            // window.location.href './assets/explore.zip';
-        });
+        
+        window.downloadZip = function() {
+                window.location.href = "https://zip-silk.vercel.app";
     </script>
 </body>
   </html>
